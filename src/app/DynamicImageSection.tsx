@@ -15,31 +15,29 @@ export default function DynamicImageSection() {
 
   return (
     <motion.div
-  style={{
-    position: 'absolute',
-    bottom: 0, // Pin to bottom of viewport
-    left: 0, // Start from the left
-    right: 0, // End at the right
-    margin: 'auto', // Center horizontally
-    transform: 'none', // Remove any translateX
-    y: imageY, // Client-side vertical animation
-    scale: imageScale,
-    filter: `blur(${imageBlur}px)`,
-    width: '90vw',
-    maxWidth: '1200px',
-    zIndex: 0,
-  }}
-  initial={false} // Disable initial animation to use static position
-  transition={{ duration: 0 }}
-  className="h-[80vh] md:h-[70vh] max-h-[900px] overflow-hidden rounded-none bg-gradient-to-b from-green-50 to-white"
->
-  <Image
-    src="/images/1.png"
-    alt="Floral decor"
-    width={1200}
-    height={900}
-    className="object-cover object-center w-full h-full"
-  />
-</motion.div>
+      style={{
+        position: 'absolute',
+        bottom: 0, // Pin to bottom of viewport
+        left: 0, // Start from the left
+        right: 0, // End at the right
+        margin: 'auto', // Center horizontally
+        transform: 'none', // Remove any translateX
+        y: imageY, // Client-side vertical animation
+        scale: imageScale,
+        filter: `blur(${imageBlur}px)`,
+        zIndex: 0,
+      }}
+      initial={false} // Disable initial animation to use static position
+      transition={{ duration: 0 }}
+      className="h-[80vh] md:h-[70vh] max-h-[900px] overflow-hidden rounded-none bg-gradient-to-b from-green-50 to-white w-full md:w-[90vw] md:max-w-[1200px]"
+    >
+      <Image
+        src="/images/1.png"
+        alt="Floral decor"
+        width={1200}
+        height={900}
+        className="object-cover object-center w-full h-full"
+      />
+    </motion.div>
   );
 }

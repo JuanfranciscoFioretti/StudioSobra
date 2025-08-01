@@ -177,49 +177,74 @@ export default function Home() {
       </section>
 
       <section
-        id="products"
-        ref={productsRef}
-        className="min-h-[70vh] py-16 px-4 bg-white flex items-center justify-center"
-      >
+  id="products"
+  ref={productsRef}
+  className="min-h-[70vh] py-16 px-4 bg-white flex items-center justify-center"
+>
+  <motion.div
+    initial={{ opacity: 0, x: -100 }}
+    animate={productsInView ? { opacity: 1, x: 0 } : {}}
+    transition={{ duration: 0.8, delay: 0.4 }}
+    className="text-center w-full max-w-6xl"
+  >
+    <h2 className="text-3xl md:text-4xl font-serif font-semibold text-gray-800 mb-8">Our Products</h2>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-16 justify-items-center relative" style={{ gap: '16px' }}>
+      {products.map((product, idx) => (
         <motion.div
-          initial={{ opacity: 0, x: -100 }}
-          animate={productsInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-center w-full max-w-6xl"
+          key={product.id}
+          initial={{ opacity: 0, y: 50 }}
+          animate={productsInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: idx * 0.1 }}
+          className={`bg-gray-50 rounded-xl shadow-md p-6 text-center w-80 transform hover:scale-105 transition-transform duration-300 border border-gray-100 ${product.highlight ? 'border-0 border-lime-600' : 'border-opacity-20'}`}
+          style={{
+            minHeight: '420px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            ...(product.highlight && {
+              boxShadow: '0 0 20px rgba(77,124,15,0.4)',
+              animation: 'moveLight 6s infinite linear',
+            }),
+            ...(product.highlight && {
+              '&:hover': {
+                boxShadow: '0 0 25px rgba(77,124,15,0.6)',
+              },
+            }),
+          }}
         >
-          <h2 className="text-3xl md:text-4xl font-serif font-semibold text-gray-800 mb-8">Our Products</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-16 justify-items-center relative" style={{ gap: '16px' }}>
-            {products.map((product, idx) => (
-              <motion.div
-                key={product.id}
-                initial={{ opacity: 0, y: 50 }}
-                animate={productsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className={`bg-gray-50 rounded-xl shadow-lg p-6 text-center w-80 transform hover:scale-105 transition-transform duration-300 border ${product.highlight ? 'border-green-100 animate-moving-border' : 'border-gray-200'}`}
-                style={{ minHeight: '420px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
-              >
-                <div>
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    width={500}
-                    height={400}
-                    className="w-full h-48 object-cover mb-4 rounded-t-lg"
-                  />
-                  <h3 className="text-xl font-serif font-bold text-green-700 mb-2">{product.name}</h3>
-                  <p className="text-sm font-serif text-gray-600 mb-4 flex-grow">{product.description}</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-lg font-serif text-gray-800 mb-4">{product.price}</p>
-                  <Link href="#contact" className="bg-green-300 text-white w-full py-3 rounded-xl hover:bg-green-400 transition-colors duration-200 shadow-md block text-center">
-                    Order
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
+          <style>
+            {`
+              @keyframes moveLight {
+                0% { box-shadow: 0 0 20px rgba(77,124,15,0.4), -10px -10px 15px rgba(77,124,15,0.2); }
+                25% { box-shadow: 0 0 20px rgba(77,124,15,0.4), 10px -10px 15px rgba(77,124,15,0.2); }
+                50% { box-shadow: 0 0 20px rgba(77,124,15,0.4), 10px 10px 15px rgba(77,124,15,0.2); }
+                75% { box-shadow: 0 0 20px rgba(77,124,15,0.4), -10px 10px 15px rgba(77,124,15,0.2); }
+                100% { box-shadow: 0 0 20px rgba(77,124,15,0.4), -10px -10px 15px rgba(77,124,15,0.2); }
+              }
+            `}
+          </style>
+          <div>
+            <Image
+              src={product.image}
+              alt={product.name}
+              width={500}
+              height={400}
+              className="w-full h-48 object-cover mb-4 rounded-t-xl"
+            />
+            <h3 className="text-xl font-serif font-bold text-green-700 mb-2">{product.name}</h3>
+            <p className="text-sm font-serif text-gray-600 mb-4 flex-grow">{product.description}</p>
+          </div>
+          <div className="text-center">
+            <p className="text-lg font-serif text-gray-800 mb-4">{product.price}</p>
+            <Link href="#contact" className="bg-lime-700 text-white w-full py-3 rounded-xl hover:bg-lime-800 transition-colors duration-300 shadow-md block text-center">
+              Order
+            </Link>
           </div>
         </motion.div>
-      </section>
+      ))}
+    </div>
+  </motion.div>
+</section>
 
       <section
         id="about"
@@ -342,7 +367,7 @@ export default function Home() {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                  to: 'juanfrafio125@gmail.com',
+                  to: 'greencode365@gmail.com',
                   subject: `New Contact Form Submission - ${service}`,
                   text: `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nService: ${service}\nMessage: ${message}`,
                 }),

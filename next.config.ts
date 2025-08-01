@@ -1,10 +1,11 @@
-import type { NextConfig } from 'next';
-
-const nextConfig: NextConfig = {
-  reactStrictMode: true,
-  images: {
-    domains: ['images.pexels.com'],
-  },
-};
-
-export default nextConfig;
+module.exports = {
+       images: {
+         remotePatterns: [
+           {
+             protocol: 'https',
+             hostname: 'i.ibb.co',
+             pathname: '/fYmvV8Pj/**',
+           },
+         ],
+       },
+     };
