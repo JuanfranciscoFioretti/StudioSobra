@@ -42,12 +42,6 @@ const Navbar: React.FC<NavbarProps> = ({ toggleLanguage, currentLang }) => {
         <Link href="/#contact" className="text-gray-700 hover:text-green-600 transition-colors">
           {t('contact')}
         </Link>
-        <button
-          onClick={toggleLanguage}
-          className="ml-4 text-gray-700 hover:text-green-600 transition-colors font-medium bg-gray-100 px-3 py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-green-600"
-        >
-          {currentLang === 'en' ? 'DA' : 'EN'}
-        </button>
       </div>
     </motion.nav>
   );
