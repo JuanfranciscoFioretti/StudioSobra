@@ -1,16 +1,8 @@
-import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-interface NavbarProps {
-  toggleLanguage: () => void;
-  currentLang: string;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ toggleLanguage, currentLang }) => {
-  const { t } = useTranslation();
-
+const Navbar: React.FC = () => {
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -28,19 +20,19 @@ const Navbar: React.FC<NavbarProps> = ({ toggleLanguage, currentLang }) => {
       </Link>
       <div className="space-x-6">
         {/* <Link href="/#home" className="text-gray-700 hover:text-green-600 transition-colors">
-          {t('home')}
+          Home
         </Link> */}
         <Link href="/#projects" className="text-gray-700 hover:text-green-600 transition-colors">
-          {t('projects')}
+          Projects
         </Link>
         <Link href="/#products" className="text-gray-700 hover:text-green-600 transition-colors">
-          {t('products')}
+          Products
         </Link>
         <Link href="/#about" className="text-gray-700 hover:text-green-600 transition-colors">
-          {t('about')}
+          About
         </Link>
         <Link href="/#contact" className="text-gray-700 hover:text-green-600 transition-colors">
-          {t('contact')}
+          Contact
         </Link>
       </div>
     </motion.nav>

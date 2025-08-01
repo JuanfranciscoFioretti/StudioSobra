@@ -1,7 +1,7 @@
 'use client';
 
 import Layout from '../components/Layout';
-import { useTranslation } from 'next-i18next';
+import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
@@ -9,7 +9,6 @@ import { useState, useCallback } from 'react';
 import DynamicImageSection from './DynamicImageSection';
 
 export default function Home() {
-  const { t } = useTranslation();
   const { scrollYProgress } = useScroll();
 
   const opacity = useTransform(scrollYProgress, [0.7, 0.9, 1], [1, 1, 0]);
@@ -178,49 +177,49 @@ export default function Home() {
       </section>
 
       <section
-  id="products"
-  ref={productsRef}
-  className="min-h-[70vh] py-16 px-4 bg-white flex items-center justify-center"
->
-  <motion.div
-    initial={{ opacity: 0, x: -100 }}
-    animate={productsInView ? { opacity: 1, x: 0 } : {}}
-    transition={{ duration: 0.8, delay: 0.4 }}
-    className="text-center w-full max-w-6xl"
-  >
-    <h2 className="text-3xl md:text-4xl font-serif font-semibold text-gray-800 mb-8">{t('Our products')}</h2>
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-16 justify-items-center relative" style={{ gap: '16px' }}>
-      {products.map((product, idx) => (
+        id="products"
+        ref={productsRef}
+        className="min-h-[70vh] py-16 px-4 bg-white flex items-center justify-center"
+      >
         <motion.div
-          key={product.id}
-          initial={{ opacity: 0, y: 50 }}
-          animate={productsInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: idx * 0.1 }}
-          className={`bg-gray-50 rounded-xl shadow-lg p-6 text-center w-80 transform hover:scale-105 transition-transform duration-300 border ${product.highlight ? 'border-green-100 animate-moving-border' : 'border-gray-200'}`}
-          style={{ minHeight: '420px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+          initial={{ opacity: 0, x: -100 }}
+          animate={productsInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-center w-full max-w-6xl"
         >
-          <div>
-            <Image
-              src={product.image}
-              alt={product.name}
-              width={500}
-              height={400}
-              className="w-full h-48 object-cover mb-4 rounded-t-lg"
-            />
-            <h3 className="text-xl font-serif font-bold text-green-700 mb-2">{product.name}</h3>
-            <p className="text-sm font-serif text-gray-600 mb-4 flex-grow">{product.description}</p>
-          </div>
-          <div className="text-center">
-            <p className="text-lg font-serif text-gray-800 mb-4">{product.price}</p>
-            <button className="bg-green-300 text-white w-full py-3 rounded-xl hover:bg-green-400 transition-colors duration-200 shadow-md">
-              Order
-            </button>
+          <h2 className="text-3xl md:text-4xl font-serif font-semibold text-gray-800 mb-8">Our Products</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-16 justify-items-center relative" style={{ gap: '16px' }}>
+            {products.map((product, idx) => (
+              <motion.div
+                key={product.id}
+                initial={{ opacity: 0, y: 50 }}
+                animate={productsInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className={`bg-gray-50 rounded-xl shadow-lg p-6 text-center w-80 transform hover:scale-105 transition-transform duration-300 border ${product.highlight ? 'border-green-100 animate-moving-border' : 'border-gray-200'}`}
+                style={{ minHeight: '420px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+              >
+                <div>
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    width={500}
+                    height={400}
+                    className="w-full h-48 object-cover mb-4 rounded-t-lg"
+                  />
+                  <h3 className="text-xl font-serif font-bold text-green-700 mb-2">{product.name}</h3>
+                  <p className="text-sm font-serif text-gray-600 mb-4 flex-grow">{product.description}</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-lg font-serif text-gray-800 mb-4">{product.price}</p>
+                  <Link href="#contact" className="bg-green-300 text-white w-full py-3 rounded-xl hover:bg-green-400 transition-colors duration-200 shadow-md block text-center">
+                    Order
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
-      ))}
-    </div>
-  </motion.div>
-</section>
+      </section>
 
       <section
         id="about"
@@ -294,138 +293,138 @@ export default function Home() {
       </section>
 
       <section
-  id="contact"
-  ref={contactRef}
-  className="min-h-[70vh] py-16 px-4 bg-gray-50 flex items-center justify-center"
->
-  <motion.div
-    initial={{ opacity: 0, x: -100 }}
-    animate={contactInView ? { opacity: 1, x: 0 } : {}}
-    transition={{ duration: 0.8, delay: 1.0 }}
-    className="text-center max-w-sm lg:max-w-xs bg-white rounded-xl shadow-2xl p-6 border border-gray-200"
-    style={{ width: '100vw', maxWidth: '700px', overflow: 'hidden' }}
-  >
-    <h2 className="text-3xl md:text-4xl font-serif font-semibold text-gray-800 mb-6">Contact Us</h2>
-    <motion.form
-      initial={{ opacity: 1, y: 0 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -50, transition: { duration: 0.6, ease: 'easeOut' } }}
-      transition={{ duration: 0.5 }}
-      className="space-y-6"
-      onSubmit={async (e) => {
-        e.preventDefault();
-        const form = e.target as HTMLFormElement;
-        const name = (form.elements.namedItem('name') as HTMLInputElement).value;
-        const phone = (form.elements.namedItem('phone') as HTMLInputElement).value;
-        const email = (form.elements.namedItem('email') as HTMLInputElement).value;
-        const message = (form.elements.namedItem('message') as HTMLInputElement).value;
-        const service = (form.elements.namedItem('service') as HTMLSelectElement).value;
-        // Basic validation
-        const sanitizeInput = (input: string) => input.replace(/[<>;'"\\]/g, '').trim();
-        if (!name || !phone || !email || !message || !service) {
-          alert('All fields are required.');
-          return;
-        }
-        if (!/^\+?[\d\s-]{8,}$/.test(phone)) {
-          alert('Please enter a valid phone number (e.g., +4512345678).');
-          return;
-        }
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-          alert('Please enter a valid email address.');
-          return;
-        }
-        if (sanitizeInput(name) !== name || sanitizeInput(phone) !== phone || sanitizeInput(email) !== email || sanitizeInput(message) !== message) {
-          alert('Invalid characters detected. Please avoid <, >, ;, ", \', or \\.');
-          return;
-        }
-        // Send data to API route
-        const response = await fetch('/api/send-email', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            to: 'juanfrafio125@gmail.com',
-            subject: `New Contact Form Submission - ${service}`,
-            text: `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nService: ${service}\nMessage: ${message}`,
-          }),
-        });
-        if (response.ok) {
-          form.style.display = 'none';
-          const successMessage = document.createElement('div');
-          successMessage.className = 'text-green-700 font-serif text-lg mt-6';
-          successMessage.textContent = 'Thank you for your submission. Our team will reach out to you shortly.';
-          form.parentElement?.appendChild(successMessage);
-        } else {
-          alert('Failed to send the message. Please try again later.');
-        }
-      }}
-    >
-      <div className="relative">
-        <input
-          type="text"
-          id="name"
-          name="name"
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-gray-50 placeholder-gray-400 text-gray-800 transition-all duration-300"
-          placeholder="Your Name"
-          required
-        />
-      </div>
-      <div className="relative">
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-gray-50 placeholder-gray-400 text-gray-800 transition-all duration-300"
-          placeholder="Your Phone (e.g., +4512345678)"
-          required
-        />
-      </div>
-      <div className="relative">
-        <input
-          type="email"
-          id="email"
-          name="email"
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-gray-50 placeholder-gray-400 text-gray-800 transition-all duration-300"
-          placeholder="Your Email"
-          required
-        />
-      </div>
-      <div className="relative">
-        <select
-          id="service"
-          name="service"
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white text-gray-800 appearance-none transition-all duration-300"
-          defaultValue=""
-          required
-        >
-          <option value="">Select Service</option>
-          <option value="restaurant">Restaurant</option>
-          <option value="hotel">Hotel</option>
-          <option value="private_event">Private Event</option>
-          <option value="home">Home</option>
-          <option value="wedding">Wedding</option>
-          <option value="shop">Shop</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-      <div className="relative">
-        <textarea
-          id="message"
-          name="message"
-          rows={4}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-gray-50 placeholder-gray-400 text-gray-800 transition-all duration-300"
-          placeholder="Your Message"
-          required
-        ></textarea>
-      </div>
-      <button
-        type="submit"
-        className="w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 transition-colors duration-300 font-serif text-lg shadow-md"
+        id="contact"
+        ref={contactRef}
+        className="min-h-[70vh] py-16 px-4 bg-gray-50 flex items-center justify-center"
       >
-        Send Message
-      </button>
-    </motion.form>
-  </motion.div>
-</section>
+        <motion.div
+          initial={{ opacity: 0, x: -100 }}
+          animate={contactInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.8, delay: 1.0 }}
+          className="text-center max-w-sm lg:max-w-xs bg-white rounded-xl shadow-2xl p-6 border border-gray-200"
+          style={{ width: '100vw', maxWidth: '700px', overflow: 'hidden' }}
+        >
+          <h2 className="text-3xl md:text-4xl font-serif font-semibold text-gray-800 mb-6">Contact Us</h2>
+          <motion.form
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50, transition: { duration: 0.6, ease: 'easeOut' } }}
+            transition={{ duration: 0.5 }}
+            className="space-y-6"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              const form = e.target as HTMLFormElement;
+              const name = (form.elements.namedItem('name') as HTMLInputElement).value;
+              const phone = (form.elements.namedItem('phone') as HTMLInputElement).value;
+              const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+              const message = (form.elements.namedItem('message') as HTMLInputElement).value;
+              const service = (form.elements.namedItem('service') as HTMLSelectElement).value;
+              // Basic validation
+              const sanitizeInput = (input: string) => input.replace(/[<>;'"\\]/g, '').trim();
+              if (!name || !phone || !email || !message || !service) {
+                alert('All fields are required.');
+                return;
+              }
+              if (!/^\+?[\d\s-]{8,}$/.test(phone)) {
+                alert('Please enter a valid phone number (e.g., +4512345678).');
+                return;
+              }
+              if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+              }
+              if (sanitizeInput(name) !== name || sanitizeInput(phone) !== phone || sanitizeInput(email) !== email || sanitizeInput(message) !== message) {
+                alert('Invalid characters detected. Please avoid <, >, ;, ", \', or \\.');
+                return;
+              }
+              // Send data to API route
+              const response = await fetch('/api/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  to: 'juanfrafio125@gmail.com',
+                  subject: `New Contact Form Submission - ${service}`,
+                  text: `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nService: ${service}\nMessage: ${message}`,
+                }),
+              });
+              if (response.ok) {
+                form.style.display = 'none';
+                const successMessage = document.createElement('div');
+                successMessage.className = 'text-green-700 font-serif text-lg mt-6';
+                successMessage.textContent = 'Thank you for your submission. Our team will reach out to you shortly.';
+                form.parentElement?.appendChild(successMessage);
+              } else {
+                alert('Failed to send the message. Please try again later.');
+              }
+            }}
+          >
+            <div className="relative">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-gray-50 placeholder-gray-400 text-gray-800 transition-all duration-300"
+                placeholder="Your Name"
+                required
+              />
+            </div>
+            <div className="relative">
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-gray-50 placeholder-gray-400 text-gray-800 transition-all duration-300"
+                placeholder="Your Phone (e.g., +4512345678)"
+                required
+              />
+            </div>
+            <div className="relative">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-gray-50 placeholder-gray-400 text-gray-800 transition-all duration-300"
+                placeholder="Your Email"
+                required
+              />
+            </div>
+            <div className="relative">
+              <select
+                id="service"
+                name="service"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white text-gray-800 appearance-none transition-all duration-300"
+                defaultValue=""
+                required
+              >
+                <option value="">Select Service</option>
+                <option value="restaurant">Restaurant</option>
+                <option value="hotel">Hotel</option>
+                <option value="private_event">Private Event</option>
+                <option value="home">Home</option>
+                <option value="wedding">Wedding</option>
+                <option value="shop">Shop</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div className="relative">
+              <textarea
+                id="message"
+                name="message"
+                rows={4}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-gray-50 placeholder-gray-400 text-gray-800 transition-all duration-300"
+                placeholder="Your Message"
+                required
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 transition-colors duration-300 font-serif text-lg shadow-md"
+            >
+              Send Message
+            </button>
+          </motion.form>
+        </motion.div>
+      </section>
 
       <footer className="bg-gradient-to-t from-gray-50 to-gray-100 text-gray-800 py-6 px-4 shadow-md relative" style={{
         backgroundImage: "url('/images/bg3.jpg')",
