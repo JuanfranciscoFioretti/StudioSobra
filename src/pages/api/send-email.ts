@@ -77,7 +77,6 @@
 //     res.status(500).json({ error: 'Failed to send email' });
 //   }
 // }
-
 import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
 
@@ -135,32 +134,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     </html>
   `;
 
-  const sendEmailWithRetry = async (attempt: number = 0): Promise<void> => {
-    const maxAttempts = 3;
-    const delayMs = 2000; // 2 segundos de retraso entre intentos
-
-    try {
-      console.log(`Attempt ${attempt + 1} to send email to: ${to}, subject: ${subject}`);
-      const uniqueMessageId = `<${Date.now()}-${Math.random().toString(36).substr(2, 9)}@studio-sobra.com>`;
-      await transporter.sendMail({
-        from: process.env.EMAIL_USER,
-        to,
-        subject,
-        html: htmlEmail,
-        headers: {
-          'Message-ID': uniqueMessageId,
-        },
-      });
-      res.status(200).json({ success: true });
-    } catch (error) {
-      console.error(`Error sending email (Attempt ${attempt + 1}):`, error);
-      if (attempt < maxAttempts - 1) {
-        await new Promise(resolve => setTimeout(resolve, delayMs));
-        return sendEmailWithRetry(attempt + 1);
-      }
-      res.status(500).json({ error: 'Failed to send email after multiple attempts' });
-    }
-  };
-
-  await sendEmailWithRetry();
+  try {
+    console.log('Attempting to send email to:', to, 'with subject:', subject);
+    const uniqueMessageId = `<${Date.now()}-${Math.random().toString(36).substr(2, 9)}@studio-sobra.com>`;
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to,
+      subject,
+      html: htmlEmail,
+      headers: {
+        'Message-ID': uniqueMessageId,
+      },
+    });
+    res.status(200).json({ success: true });
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+    console.error('Detailed error sending email:', errorMessage);
+    res.status(500).json({ error: 'Failed to send email', details: errorMessage });
+  }
 }
