@@ -19,19 +19,16 @@ const Navbar: React.FC = () => {
         />
       </Link>
       <div className="space-x-6">
-        {/* <Link href="/#home" className="text-gray-700 hover:text-green-600 transition-colors">
-          Home
-        </Link> */}
-        <Link href="/#projects" className="text-gray-700 hover:text-green-600 transition-colors">
+        <Link href="/#projects" className="text-gray-700 hover:text-green-600 transition-colors" style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }}>
           Projects
         </Link>
-        <Link href="/#products" className="text-gray-700 hover:text-green-600 transition-colors">
+        <Link href="/#products" className="text-gray-700 hover:text-green-600 transition-colors" style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }}>
           Products
         </Link>
-        <Link href="/#about" className="text-gray-700 hover:text-green-600 transition-colors">
+        <Link href="/#about" className="text-gray-700 hover:text-green-600 transition-colors" style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }}>
           About
         </Link>
-        <Link href="/#contact" className="text-gray-700 hover:text-green-600 transition-colors">
+        <Link href="/#contact" className="text-gray-700 hover:text-green-600 transition-colors" style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }}>
           Contact
         </Link>
       </div>

@@ -101,13 +101,13 @@ export default function Home() {
                   onClick={(e) => handleCardClick(project.id, e)}
                   style={{
                     position: 'relative',
-                    height: '400px', // Fixed height to maintain card size
+                    height: '400px',
                     overflow: 'hidden',
                   }}
                 >
                   <motion.div
                     initial={false}
-                    animate={{ height: isExpanded ? '128px' : '256px' }} // Shrink from 256px to 128px
+                    animate={{ height: isExpanded ? '128px' : '256px' }}
                     transition={{ duration: 0.3, ease: 'easeOut' }}
                     style={{ position: 'absolute', top: 0, left: 0, right: 0, overflow: 'hidden', transformOrigin: 'bottom' }}
                   >
@@ -117,18 +117,19 @@ export default function Home() {
                       width={1200}
                       height={768}
                       className="w-full object-cover transition-transform duration-300"
-                      style={{ height: '100%', objectFit: 'cover' }} // Dynamic height with cover fit
+                      style={{ height: '100%', objectFit: 'cover' }}
                     />
                   </motion.div>
                   <motion.div
                     initial={false}
-                    animate={{ y: isExpanded ? '-150px' : 0 }} // Shift content up more for better centering
+                    animate={{ y: isExpanded ? '-150px' : 0 }}
                     transition={{ duration: 0.3, ease: 'easeOut' }}
                     className="p-4 relative"
                     style={{ height: 'calc(100% - 256px)', position: 'absolute', top: '256px', left: 0, right: 0 }}
                   >
                     <motion.h3
-                      className="text-2xl font-serif font-semibold text-gray-800"
+                      className="text-2xl font-semibold text-gray-800" /* Quitamos font-serif, usamos Inter con 600 */
+                      style={{ fontFamily: '"Inter", sans-serif', fontWeight: 600 }} /* Añadimos Inter Semi Bold */
                       initial={false}
                       animate={isExpanded ? { y: 20, opacity: 0 } : { y: 0, opacity: 1 }}
                       transition={{ duration: 0.3, ease: 'easeOut' }}
@@ -138,7 +139,7 @@ export default function Home() {
                     {isExpanded && (
                       <motion.div
                         initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 250, opacity: 1 }} // Adjusted height to fit within space
+                        animate={{ height: 250, opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ type: 'spring', stiffness: 150, damping: 30 }}
                         className="mt-2 p-4"
@@ -165,7 +166,11 @@ export default function Home() {
                             </motion.div>
                           ))}
                         </div>
-                        <p className="text-base font-serif text-gray-600 leading-relaxed">{project.description}</p>
+                        <p className="text-base text-gray-600 leading-relaxed" /* Quitamos font-serif, usamos Inter con 100 */
+                          style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }} /* Añadimos Inter Extra Light */
+                        >
+                          {project.description}
+                        </p>
                       </motion.div>
                     )}
                   </motion.div>
@@ -187,7 +192,11 @@ export default function Home() {
     transition={{ duration: 0.8, delay: 0.4 }}
     className="text-center w-full max-w-6xl"
   >
-    <h2 className="text-3xl md:text-4xl font-serif font-semibold text-gray-800 mb-8">Our Products</h2>
+    <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-8" /* Quitamos font-serif, usamos Inter con 600 */
+      style={{ fontFamily: '"Inter", sans-serif', fontWeight: 600 }} /* Añadimos Inter Semi Bold */
+    >
+      Our Products
+    </h2>
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-16 justify-items-center relative" style={{ gap: '16px' }}>
       {products.map((product, idx) => (
         <motion.div
@@ -231,13 +240,25 @@ export default function Home() {
               height={400}
               className="w-full h-48 object-cover mb-4 rounded-t-xl"
             />
-            <h3 className="text-xl font-serif font-bold text-green-700 mb-2">{product.name}</h3>
-            <p className="text-sm font-serif text-gray-600 mb-4 flex-grow">{product.description}</p>
+            <h3 className="text-xl font-bold text-green-700 mb-2" /* Quitamos font-serif, usamos Inter con 600 */
+              style={{ fontFamily: '"Inter", sans-serif', fontWeight: 600 }} /* Añadimos Inter Semi Bold */
+            >
+              {product.name}
+            </h3>
+            <p className="text-sm text-gray-600 mb-4 flex-grow" /* Quitamos font-serif, usamos Inter con 100 */
+              style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }} /* Añadimos Inter Extra Light */
+            >
+              {product.description}
+            </p>
           </div>
           <div className="text-center">
-            <p className="text-lg font-serif text-gray-800 mb-4">{product.price}</p>
+            <p className="text-lg font-serif text-gray-800 mb-4" /* Quitamos font-serif, usamos Inter con 100 */
+              style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }} /* Añadimos Inter Extra Light */
+            >
+              {product.price}
+            </p>
             <Link href="#contact" className="bg-lime-700 text-white w-full py-3 rounded-xl hover:bg-lime-800 transition-colors duration-300 shadow-md block text-center">
-              Order
+              <p style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }}>Order</p>
             </Link>
           </div>
         </motion.div>
@@ -264,14 +285,37 @@ export default function Home() {
             opacity: 0.1,
           }}
         >
-          <h2 className="text-3xl md:text-4xl font-serif font-semibold text-gray-800 mb-8">About Us</h2>
-          <p className="text-base font-serif text-gray-600 leading-relaxed">
-            We are a distinguished landscape and floral design studio based in the heart of Copenhagen. With a legacy of meticulous craftsmanship and an unwavering commitment to excellence, we craft immersive botanical installations that seamlessly blend the untamed beauty of nature with intentional, sophisticated design, accented by an industrial edge. Our passion is to transform ordinary spaces into extraordinary, living artworks that captivate the senses and inspire the soul. Drawing from a deep appreciation for both tradition and innovation, we collaborate closely with our clients to bring their visions to life, creating bespoke experiences that leave a lasting impression.
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-8" /* Quitamos font-serif, usamos Inter con 600 */
+            style={{ fontFamily: '"Inter", sans-serif', fontWeight: 600 }} /* Añadimos Inter Semi Bold */
+          >
+            About Us
+          </h2>
+          <p className="text-base text-gray-600 leading-relaxed" /* Quitamos font-serif, usamos Inter con 100 */
+            style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }} /* Añadimos Inter Extra Light */
+          >
+            We are a Flower Studio specialized
+            in floral installations, based in
+            Copenhagen. With a background in
+            landscape and design, we combine
+            nature with an industrial edge.
+            The word “sobra” in Spanish has
+            multiple nuanced meanings,
+            making it a versatile and evoca
+            tive choice for a studio name.
+            Sobra can mean “surplus” or
+            “abundance,” suggesting something
+            overflowing or more than enough—
+            an idea tied to creativity, growth, and
+            richness. It also carries the notion of
+            something left behind or beyond,
+            hinting at pushing boundaries, exploring
+            uncharted territory, and creating
+            something unexpected.
           </p>
         </motion.div>
       </section>
 
-      <section
+      {/* <section
         id="testimonials"
         ref={testimonialsRef}
         className="min-h-[70vh] py-16 px-4 bg-white flex items-center justify-center"
@@ -315,7 +359,7 @@ export default function Home() {
             ))}
           </div>
         </motion.div>
-      </section>
+      </section> */}
 
       <section
         id="contact"
@@ -329,7 +373,11 @@ export default function Home() {
           className="text-center max-w-sm lg:max-w-xs bg-white rounded-xl shadow-2xl p-6 border border-gray-200"
           style={{ width: '100vw', maxWidth: '700px', overflow: 'hidden' }}
         >
-          <h2 className="text-3xl md:text-4xl font-serif font-semibold text-gray-800 mb-6">Contact Us</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-6" /* Quitamos font-serif, usamos Inter con 600 */
+            style={{ fontFamily: '"Inter", sans-serif', fontWeight: 600 }} /* Añadimos Inter Semi Bold */
+          >
+            Contact Us
+          </h2>
           <motion.form
             initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
@@ -375,7 +423,9 @@ export default function Home() {
               if (response.ok) {
                 form.style.display = 'none';
                 const successMessage = document.createElement('div');
-                successMessage.className = 'text-green-700 font-serif text-lg mt-6';
+                successMessage.className = 'text-green-700 text-lg mt-6' /* Quitamos font-serif, usamos Inter con 100 */
+                successMessage.style.fontFamily = '"Inter", sans-serif';
+                successMessage.style.fontWeight = '100'; /* Añadimos Inter Extra Light */
                 successMessage.textContent = 'Thank you for your submission. Our team will reach out to you shortly.';
                 form.parentElement?.appendChild(successMessage);
               } else {
@@ -443,7 +493,8 @@ export default function Home() {
             </div>
             <button
               type="submit"
-              className="w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 transition-colors duration-300 font-serif text-lg shadow-md"
+              className="w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 transition-colors duration-300 text-lg shadow-md" /* Quitamos font-serif, usamos Inter con 600 */
+              style={{ fontFamily: '"Inter", sans-serif', fontWeight: 600 }} /* Añadimos Inter Semi Bold */
             >
               Send Message
             </button>
@@ -460,12 +511,24 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-center md:text-left">
-              <h4 className="text-lg font-serif font-semibold text-green-600 mb-2">Contact Us</h4>
-              <p className="text-base font-serif text-gray-500 mb-1">Email: studiosobra.cph@gmail.com</p>
-              <p className="text-base font-serif text-gray-500 mb-2">Phone: +45 91658293</p>
+              <h4 className="text-lg font-semibold text-gray-800 mb-6" /* Quitamos font-serif, usamos Inter con 600 */
+                style={{ fontFamily: '"Inter", sans-serif', fontWeight: 600 }} /* Añadimos Inter Semi Bold */
+              >
+                Contact Us
+              </h4>
+              <p className="text-base text-gray-500 mb-1" /* Quitamos font-serif, usamos Inter con 100 */
+                style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }} /* Añadimos Inter Extra Light */
+              >
+                Email: studiosobra.cph@gmail.com
+              </p>
+              <p className="text-base text-gray-500 mb-2" /* Quitamos font-serif, usamos Inter con 100 */
+                style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }} /* Añadimos Inter Extra Light */
+              >
+                Phone: +45 91658293
+              </p>
               <div className="flex justify-center md:justify-start space-x-4">
                 <a href="https://www.instagram.com/studiosobra/" target="_blank" rel="noopener noreferrer" className="hover:text-green-500 transition-colors">
-                  <i className="fab fa-instagram text-2xl"></i>
+                  instagram<i className="fab fa-instagram text-2xl"></i>
                 </a>
                 <a href="https://www.facebook.com/studiosobra/" target="_blank" rel="noopener noreferrer" className="hover:text-green-500 transition-colors">
                   <i className="fab fa-facebook text-2xl"></i>
@@ -473,9 +536,15 @@ export default function Home() {
               </div>
             </div>
             <div className="text-center">
-              <h4 className="text-lg font-serif font-semibold text-green-600 mb-2">Developed By</h4>
-              <p className="text-base font-serif text-gray-500">
-                <a href="https://www.instagram.com/greencoding_/" target="_blank" rel="noopener noreferrer" className="text-green-500 hover:underline">
+              <h4 className="text-lg font-semibold text-gray-800 mb-6" /* Quitamos font-serif, usamos Inter con 600 */
+                style={{ fontFamily: '"Inter", sans-serif', fontWeight: 600 }} /* Añadimos Inter Semi Bold */
+              >
+                Developed By
+              </h4>
+              <p className="text-base text-gray-500" /* Quitamos font-serif, usamos Inter con 100 */
+                style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }} /* Añadimos Inter Extra Light */
+              >
+                <a href="https://www.instagram.com/greencoding_/" target="_blank" rel="noopener noreferrer" className="text-gray-600 mb-6 hover:underline">
                   Greencode
                 </a>
               </p>

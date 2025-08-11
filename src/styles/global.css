@@ -1,4 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;400;600;900&display=swap'); /* Extra Light (100), Regular (400), Semi Bold (600), Black (900) */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', serif; /* Reemplazamos Playfair Display por Inter */
+  color: #333;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-weight: 600; /* Semi Bold en lugar de 700 */
+}
+
+p {
+  font-weight: 100; /* Extra Light en lugar de 400 */
+}
+
+footer svg {
+  vertical-align: middle;
+}
+
+.animate-pulse-border {
+  animation: pulseBorder 2s infinite;
+}
+
+@keyframes pulseBorder {
+  0% { border-color: #e0f2e9; }
+  50% { border-color: #c6e8d6; }
+  100% { border-color: #e0f2e9; }
+}
+
+
+/* @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 
 * {
   margin: 0;
@@ -33,4 +70,4 @@ footer svg {
   0% { border-color: #e0f2e9; }
   50% { border-color: #c6e8d6; }
   100% { border-color: #e0f2e9; }
-}
+} */
