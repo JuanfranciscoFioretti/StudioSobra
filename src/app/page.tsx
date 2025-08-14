@@ -710,8 +710,8 @@ export default function Home() {
               <p className="text-base text-gray-900" /* Quitamos font-serif, usamos Inter con 100 */
                 style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }} /* Añadimos Inter Extra Light */
               >
-                <a href="https://www.instagram.com/greencoding_/" target="_blank" rel="noopener noreferrer" className="text-gray-900 mb-6 hover:underline hover:text-green-900 ">
-                  Greencode
+                <a href="https://www.instagram.com/greencoding_/" target="_blank" rel="noopener noreferrer" className="text-gray-900 mb-6 hover:text-green-700 ">
+                  <FontAwesomeIcon icon={faInstagram} style={{ marginTop: 4}}/> Greencode 
                 </a>
               </p>
             </div>
