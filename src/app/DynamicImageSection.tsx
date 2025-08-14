@@ -32,7 +32,7 @@ export default function DynamicImageSection() {
       className="h-[80vh] md:h-[70vh] max-h-[900px] overflow-hidden rounded-none bg-gradient-to-b from-green-50 to-white w-full md:w-[90vw] md:max-w-[1200px]"
     >
       <Image
-        src="/images/1.png"
+        src="/images/fondofloralRecortado.png"
         alt="Floral decor"
         width={1200}
         height={900}

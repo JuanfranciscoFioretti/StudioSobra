@@ -16,6 +16,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
+    /* --background: rgba(245, 245, 245, 0.8); */
     --foreground: #ededed;
   }
 }
@@ -29,6 +30,146 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans); /* Reemplazamos Arial por Inter */
+}
+
+.mosaic-gallery {
+  width: 100%;
+  max-width: 1200px;
+  height: 80vh;
+  min-height: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+  background: white;
+}
+
+.row-top {
+  display: grid;
+  grid-template-columns: 49% 51%;
+  gap: 16px;
+  height: 100%;
+}
+
+.row-bottom {
+  display: grid;
+  grid-template-columns: 15% 47% 36%;
+  gap: 16px;
+  height: 100%;
+  padding-left: 1%;
+}
+
+.mosaic-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.mosaic-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.mosaic-item img {
+  transition: transform 0.3s ease;
+}
+
+.mosaic-item:hover img {
+  transform: scale(1.05);
+}
+
+.mosaic-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.1) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.mosaic-item:hover::before {
+  opacity: 1;
+}
+
+/* Responsive design - Mantiene la estructura del mosaico */
+@media (max-width: 1024px) {
+  .mosaic-gallery {
+    height: 60vh;
+    min-height: 480px;
+    padding: 16px;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mosaic-gallery {
+    height: 50vh;
+    min-height: 400px;
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .row-top {
+    gap: 6px;
+  }
+
+  .row-bottom {
+    gap: 6px;
+  }
+
+  .mosaic-item {
+    border-radius: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mosaic-gallery {
+    height: 40vh;
+    min-height: 320px;
+    padding: 8px;
+    gap: 5px;
+  }
+
+  .row-top {
+    gap: 4px;
+  }
+
+  .row-bottom {
+    gap: 4px;
+  }
+
+  .mosaic-item {
+    border-radius: 2px;
+  }
+
+  .mosaic-item:hover {
+    transform: translateY(-4px);
+  }
+}
+
+@media (max-width: 320px) {
+  .mosaic-gallery {
+    height: 35vh;
+    min-height: 280px;
+    padding: 6px;
+    gap: 6px;
+  }
+
+  .row-top, .row-bottom {
+    gap: 6px;
+  }
+
+  .mosaic-item {
+    border-radius: 6px;
+  }
 }
 
 

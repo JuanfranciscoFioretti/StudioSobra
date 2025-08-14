@@ -19,16 +19,16 @@ const Navbar: React.FC = () => {
         />
       </Link>
       <div className="space-x-6">
-        <Link href="/#projects" className="text-gray-700 hover:text-green-600 transition-colors" style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }}>
+        <Link href="/#projects" className="text-gray-700 hover:text-black hover:underline transition-colors" style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }}>
           Projects
         </Link>
-        <Link href="/#products" className="text-gray-700 hover:text-green-600 transition-colors" style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }}>
-          Products
+        <Link href="/#work" className="text-gray-700 hover:text-black hover:underline transition-colors" style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }}>
+          Work
         </Link>
-        <Link href="/#about" className="text-gray-700 hover:text-green-600 transition-colors" style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }}>
+        <Link href="/#about" className="text-gray-700 hover:text-black hover:underline transition-colors" style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }}>
           About
         </Link>
-        <Link href="/#contact" className="text-gray-700 hover:text-green-600 transition-colors" style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }}>
+        <Link href="/#contact" className="text-gray-700 hover:text-black hover:underline transition-colors" style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }}>
           Contact
         </Link>
       </div>

@@ -10,6 +10,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^7.0.0",
+    "@fortawesome/free-brands-svg-icons": "^7.0.0",
+    "@fortawesome/react-fontawesome": "^0.2.3",
     "framer-motion": "^12.23.11",
     "next": "^15.4.4",
     "nodemailer": "^7.0.5",
