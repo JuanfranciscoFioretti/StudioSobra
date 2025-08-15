@@ -106,7 +106,7 @@ export default function Home() {
         return (
           <div
             key={project.id}
-            className={`relative bg-gray-100 rounded-sm shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 cursor-pointer transform ${
+            className={`relative bg-white rounded-sm shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 cursor-pointer transform ${
               projectsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
             }`}
             onClick={(e) => handleCardClick(project.id, e)}
@@ -287,10 +287,10 @@ export default function Home() {
     </h2>
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-16 justify-items-center relative" style={{ gap: '16px' }}>
       {[
-        { id: 1, title: "decorations", price: "525 DKK", image: "/images/proj9.jpg", identifier: "Flowers" },
-        { id: 2, title: "events", price: "700 DKK", image: "/images/proj11.jpg", identifier: "Flowers" },
-        { id: 3, title: "bouquets", price: "350 DKK", image: "/images/proj17.jpg", identifier: "Flowers" },
-        { id: 4, title: "installations", price: "630 DKK", image: "/images/proj15.jpg", identifier: "Flowers", highlight: true },
+        { id: 1, title: "DECORATIONS", price: "525 DKK", image: "/images/proj9.jpg", identifier: "Flowers" },
+        { id: 2, title: "EVENTS", price: "700 DKK", image: "/images/proj11.jpg", identifier: "Flowers" },
+        { id: 3, title: "BOUQUETS", price: "350 DKK", image: "/images/proj17.jpg", identifier: "Flowers" },
+        { id: 4, title: "INSTALLATIONS", price: "630 DKK", image: "/images/proj15.jpg", identifier: "Flowers", highlight: true },
       ].map((item, idx) => (
         <div key={item.id} className="relative w-80 mb-18">
           <motion.div
@@ -357,7 +357,7 @@ export default function Home() {
                 />
               </div>
               <div className="price absolute text-white text-4xl"
-                style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400, letterSpacing: '0.1em' }}
+                style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400, letterSpacing: '-0.04em' }}
               >
                 {item.price}
               </div>
@@ -365,7 +365,7 @@ export default function Home() {
           </motion.div>
           <div className="title-container" style={{ marginLeft: 0, marginTop: '8px' }}>
             <h3 className="text-5xl text-gray-800 text-left"
-              style={{ fontFamily: '"Inter", sans-serif', fontWeight: 600 }}
+              style={{ fontFamily: '"Inter", sans-serif', fontWeight: 600, letterSpacing: '-0.07em' }}
             >
               {item.title}
             </h3>
@@ -382,8 +382,8 @@ export default function Home() {
     </h2>
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-16 justify-items-center relative" style={{ gap: '16px' }}>
       {[
-        { id: 5, title: "gardens", price: "400 DKK", image: "/images/proj13.jpg", identifier: "Landscape" },
-        { id: 6, title: "design", price: "580 DKK", image: "/images/proj14.jpg", identifier: "Landscape" },
+        { id: 5, title: "GARDENS", price: "400 DKK", image: "/images/proj13.jpg", identifier: "Landscape" },
+        { id: 6, title: "DESIGN", price: "580 DKK", image: "/images/proj14.jpg", identifier: "Landscape" },
       ].map((item, idx) => (
         <div key={item.id} className="relative w-80 mb-4">
           <motion.div

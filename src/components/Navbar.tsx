@@ -39,12 +39,23 @@
 // export default Navbar;
 
 import Link from 'next/link';
-import { motion, useCycle } from 'framer-motion';
+import { motion, useCycle, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Navbar: React.FC = () => {
   const [isOpen, toggleOpen] = useCycle(false, true);
+  const [halfScreenHeight, setHalfScreenHeight] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => setHalfScreenHeight(window.innerHeight / 2);
+    handleResize(); // Set initial value
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize); // Cleanup
+  }, []);
+
+  const { scrollY } = useScroll();
+  const logoOpacity = useTransform(scrollY, [0, halfScreenHeight - 50, halfScreenHeight], [0, 0, 1]);
 
   const menuVariants = {
     open: { opacity: 1, x: 0, transition: { duration: 0.3 } },
@@ -58,15 +69,19 @@ const Navbar: React.FC = () => {
         animate={{ y: 0 }}
         className={`${isOpen ? 'bg:black' : 'bg:white'} bg-opacity-50 backdrop-blur-2xl shadow-md p-4 flex justify-between items-center fixed w-full z-50`}
       >
-        <Link href="/" className="flex items-center">
-          <Image
-            src="/images/titulo1.png"
-            alt="Studio Sobra"
-            width={100}
-            height={40}
-            className="object-contain"
-          />
-        </Link>
+        <motion.div
+          className="flex items-center"
+          style={{ opacity: logoOpacity }}>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/images/titulo1.png"
+              alt="Studio Sobra"
+              width={100}
+              height={40}
+              className="object-contain"
+            />
+          </Link>
+          </motion.div>
         <div className={`hidden md:flex space-x-6 `} >
           <Link href="/#projects" className="text-gray-700 hover:text-black hover:underline transition-colors" style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }}>
             Projects
