@@ -277,13 +277,13 @@ export default function Home() {
     initial={{ opacity: 0, x: -100 }}
     animate={productsInView ? { opacity: 1, x: 0 } : {}}
     transition={{ duration: 0.8, delay: 0.4 }}
-    className="text-center w-full max-w-6xl"
+    className="w-full max-w-6xl"
   >
     {/* Work/Flowers Section */}
-    <h2 className="text-3xl md:text-5xl text-gray-800 mb-19"
+    <h2 className="text-4xl md:text-5xl  text-gray-800 mb-19 justify-start"
       style={{ fontFamily: '"Inter", sans-serif' }}
     >
-      <span style={{ fontWeight: 600}}>WORK</span> / <span style={{ fontWeight: 400}}>FLOWERS</span>
+      <span style={{ fontWeight: 800}}>WORK</span> / <span style={{ fontWeight: 400}}>FLOWERS</span>
     </h2>
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-16 justify-items-center relative" style={{ gap: '16px' }}>
       {[
@@ -375,10 +375,10 @@ export default function Home() {
     </div>
 
     {/* Work/Landscape Section */}
-    <h2 className="text-3xl md:text-5xl text-gray-800 mb-19 mt-35"
+    <h2 className="text-4xl md:text-5xl text-gray-800 mb-19 mt-35"
       style={{ fontFamily: '"Inter", sans-serif' }}
     >
-      <span style={{ fontWeight: 600 }}>WORK</span> / <span style={{ fontWeight: 400 }}>LANDSCAPE</span>
+      <span style={{ fontWeight: 800 }}>WORK</span> / <span style={{ fontWeight: 400 }}>LANDSCAPE</span>
     </h2>
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-16 justify-items-center relative" style={{ gap: '16px' }}>
       {[
@@ -692,10 +692,10 @@ export default function Home() {
                 Phone: +45 91658293
               </p>
               <div className="flex justify-center md:justify-around sm:mb-10 md:mt-10 space-x-4 mt-5">
-                <a href="https://www.instagram.com/studiosobra/" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-white hover:animate-pulse transition-colors">
+                <a href="https://www.instagram.com/studio.sobra/" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-white hover:animate-pulse transition-colors">
                   <FontAwesomeIcon icon={faInstagram} size="2xl" />
                 </a>
-                <a href="https://www.instagram.com/studiosobra/" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-white hover:animate-pulse transition-colors">
+                <a href="https://www.instagram.com/studio.sobra/" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-white hover:animate-pulse transition-colors">
                   <FontAwesomeIcon icon={faFacebook} size="2xl" />
                 </a>
 
