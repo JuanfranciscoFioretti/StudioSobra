@@ -405,7 +405,7 @@ export default function Home() {
                 />
               </div>
               <div className="price absolute text-white text-4xl"
-                style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400, letterSpacing: '0.1em' }}
+                style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400, letterSpacing: '-0.04em' }}
               >
                 {item.price}
               </div>
