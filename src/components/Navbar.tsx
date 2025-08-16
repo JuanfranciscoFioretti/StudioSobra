@@ -97,16 +97,16 @@ let intervalId: NodeJS.Timeout = setInterval(checkScroll, 100) as NodeJS.Timeout
         
         <div className="hidden md:flex space-x-6">
           <Link href="/#projects" className="text-gray-700 hover:text-black hover:underline transition-colors" style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }}>
-            Projects
+            PROJECTS
           </Link>
           <Link href="/#work" className="text-gray-700 hover:text-black hover:underline transition-colors" style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }}>
-            Work
+            WORK
           </Link>
           <Link href="/#about" className="text-gray-700 hover:text-black hover:underline transition-colors" style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }}>
-            About
+            ABOUT
           </Link>
           <Link href="/#contact" className="text-gray-700 hover:text-black hover:underline transition-colors" style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }}>
-            Contact
+            CONTACT
           </Link>
         </div>
         

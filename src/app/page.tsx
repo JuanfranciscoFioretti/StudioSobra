@@ -65,28 +65,28 @@ export default function Home() {
   return (
     <Layout>
       <section
-        id="home"
-        ref={homeRef}
-        className="min-h-screen w-full relative overflow-hidden"
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={homeInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1.2, ease: 'easeOut' }}
-          style={{ opacity }}
-          className="text-center z-10 max-w-[80%] mx-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-        >
-          <Image
-            src="/images/titulo2.png"
-            alt="Studio Sobra"
-            width={600}
-            height={200}
-            className="w-full"
-          />
-        </motion.div>
+  id="home"
+  ref={homeRef}
+  className="min-h-screen w-full relative overflow-hidden"
+>
+  <motion.div
+  initial={{ opacity: 0, y: 50 }}
+  animate={homeInView ? { opacity: 1, y: 0 } : {}}
+  transition={{ duration: 1.2, ease: 'easeOut' }}
+  style={{ opacity }}
+  className="text-center z-10 mx-auto absolute top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+>
+  <Image
+    src="/images/titulo2.png"
+    alt="Studio Sobra"
+    width={600}
+    height={200}
+    className="w-[550px]"
+  />
+</motion.div>
 
-        <DynamicImageSection />
-      </section>
+  <DynamicImageSection />
+</section>
 
       <section
   id="projects"
