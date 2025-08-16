@@ -106,7 +106,8 @@ export default function Home() {
         return (
           <div
             key={project.id}
-            className={`relative bg-white rounded-sm shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 cursor-pointer transform ${
+            // className={`relative bg-white rounded-sm shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 cursor-pointer transform ${
+            className={`relative bg-white rounded-sm overflow-hidden transition-all duration-300 cursor-pointer transform ${
               projectsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
             }`}
             onClick={(e) => handleCardClick(project.id, e)}
@@ -165,7 +166,7 @@ export default function Home() {
                 <div
                   className="mt-1 p-1 pb-15 transition-all duration-500 ease-spring"
                   style={{
-                    background: 'rgba(245, 245, 245, 0.8)',
+                    background: 'white',
                     overflow: 'hidden',
                     height: '350px',
                     opacity: isExpanded ? 1 : 0
