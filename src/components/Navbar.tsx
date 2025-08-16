@@ -37,25 +37,39 @@
 // };
 
 // export default Navbar;
-
 import Link from 'next/link';
-import { motion, useCycle, useScroll, useTransform } from 'framer-motion';
+import { motion, useCycle } from 'framer-motion';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 const Navbar: React.FC = () => {
   const [isOpen, toggleOpen] = useCycle(false, true);
-  const [halfScreenHeight, setHalfScreenHeight] = useState(0);
+  const [showLogo, setShowLogo] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setHalfScreenHeight(window.innerHeight / 2);
-    handleResize(); // Set initial value
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize); // Cleanup
-  }, []);
 
-  const { scrollY } = useScroll();
-  const logoOpacity = useTransform(scrollY, [0, halfScreenHeight - 50, halfScreenHeight], [0, 0, 1]);
+    const checkScroll = () => {
+      const scrollY = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset;
+      const threshold = window.innerHeight * 0.5;
+      const shouldShow = scrollY > threshold;
+      
+      console.log('Polling check - Scroll:', scrollY, 'Threshold:', threshold, 'Show:', shouldShow);
+      setShowLogo(shouldShow);
+    };
+let intervalId: NodeJS.Timeout = setInterval(checkScroll, 100) as NodeJS.Timeout;
+
+    // Verificar cada 100ms
+    intervalId = setInterval(checkScroll, 100);
+    
+    // Check inicial
+    checkScroll();
+
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, []);
 
   const menuVariants = {
     open: { opacity: 1, x: 0, transition: { duration: 0.3 } },
@@ -67,11 +81,9 @@ const Navbar: React.FC = () => {
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`${isOpen ? 'bg:black' : 'bg:white'} bg-opacity-50 backdrop-blur-2xl shadow-md p-4 flex justify-between items-center fixed w-full z-50`}
+        className={` ${isOpen ? 'bg-black' : 'bg-white'} bg-opacity-50 backdrop-blur-2xl shadow-md p-4 flex justify-between items-center fixed w-full z-50`}
       >
-        <motion.div
-          className="flex items-center"
-          style={{ opacity: logoOpacity }}>
+        <div className={`flex items-center transition-opacity duration-500 ${showLogo ? 'opacity-100' : 'opacity-0'}`}>
           <Link href="/" className="flex items-center">
             <Image
               src="/images/titulo1.png"
@@ -81,8 +93,9 @@ const Navbar: React.FC = () => {
               className="object-contain"
             />
           </Link>
-          </motion.div>
-        <div className={`hidden md:flex space-x-6 `} >
+        </div>
+        
+        <div className="hidden md:flex space-x-6">
           <Link href="/#projects" className="text-gray-700 hover:text-black hover:underline transition-colors" style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }}>
             Projects
           </Link>
@@ -96,6 +109,7 @@ const Navbar: React.FC = () => {
             Contact
           </Link>
         </div>
+        
         <button
           className="md:hidden text-gray-700 focus:outline-none z-50"
           onClick={() => toggleOpen()}
@@ -108,13 +122,14 @@ const Navbar: React.FC = () => {
           </div>
         </button>
       </motion.nav>
+      
       <motion.div
         className="fixed inset-0 bg-black bg-opacity-90 z-40 md:hidden"
         variants={menuVariants}
         initial="closed"
         animate={isOpen ? 'open' : 'closed'}
         onClick={(e) => {
-          if (e.target === e.currentTarget) toggleOpen(); // Close only if clicking the overlay
+          if (e.target === e.currentTarget) toggleOpen();
         }}
       >
         <div className="flex flex-col items-center justify-center h-full space-y-8">
