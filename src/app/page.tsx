@@ -47,21 +47,6 @@ export default function Home() {
 
   const projectNumbers = getRandomProjectNumbers();
 
-  // const products = [
-  //   { id: 1, name: "Bouquets", image: "/images/proj17.jpg", price: "350 DKK", description: "Vibrant floral arrangements for any occasion." },
-  //   { id: 2, name: "Product of the Week", image: "/images/proj15.jpg", price: "630 DKK", description: "Our signature floral creation, updated weekly.", highlight: true },
-  //   { id: 3, name: "Restaurant Decor", image: "/images/proj9.jpg", price: "525 DKK", description: "Elegant designs to enhance dining spaces." },
-  //   { id: 4, name: "Event Decor", image: "/images/proj11.jpg", price: "700 DKK", description: "Bespoke decor for unforgettable events." },
-  //   { id: 5, name: "Bouquets", image: "/images/proj13.jpg", price: "400 DKK", description: "Charming event decor blending elegance with botanical charm." },
-  //   { id: 6, name: "Hotel Decor", image: "/images/proj14.jpg", price: "580 DKK", description: "Elegant event decor blending sophistication with botanical charm." },
-  // ];
-
-  // const testimonials = [
-  //   { id: 1, text: "The floral installation for our event was breathtaking—Studio Sobra brought our vision to life with elegance and creativity.", author: "Anna K., Event Planner", stars: 5, image: "/images/user1.png" },
-  //   { id: 2, text: "Their attention to detail and innovative designs transformed our restaurant’s ambiance—truly exceptional work.", author: "Lars M., Restaurant Owner", stars: 5, image: "/images/user2.jpg" },
-  //   { id: 3, text: "A beautiful and professional service that exceeded our expectations.", author: "Sofia P., Client", stars: 4, image: "/images/user3.png" },
-  // ];
-
   return (
     <Layout>
       <section
@@ -711,10 +696,15 @@ export default function Home() {
               <p className="text-base text-gray-900" /* Quitamos font-serif, usamos Inter con 100 */
                 style={{ fontFamily: '"Inter", sans-serif', fontWeight: 400 }} /* Añadimos Inter Extra Light */
               >
-                <a href="https://www.instagram.com/greencoding_/" target="_blank" rel="noopener noreferrer" className="text-gray-900 mb-6 hover:text-green-700 ">
-                  <FontAwesomeIcon icon={faInstagram} style={{ marginTop: 4}}/> Greencode 
+                <a href="https://sostentia.com/" target="_blank" rel="noopener noreferrer" className="text-gray-900 mb-6 hover:text-green-700 ">
+                  Sostentia 
                 </a>
               </p>
+              <div className="flex justify-center gap-4 mt-4">
+                <a href="https://www.instagram.com/sostentia/" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-gray-600 transition-colors">
+                  <FontAwesomeIcon icon={faInstagram} size="lg" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
