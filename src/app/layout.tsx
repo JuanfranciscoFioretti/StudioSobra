@@ -1,6 +1,4 @@
 
-'use client'; // Mark as Client Component
-
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
